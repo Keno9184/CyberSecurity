@@ -26,3 +26,17 @@ def CalcHash(src:str) -> str:
     sha256Obj = hashlib.sha256()
     sha256Obj.update(src.encode('utf-8'))
     return sha256Obj.hexdigest()
+
+def PackageInstall(package:str) -> int:
+    """パッケージのインストール
+
+    Args:
+        package (str): パッケージ名
+        
+    Returns:
+        int: コマンドの実行結果
+    """
+    import subprocess
+    import sys
+    
+    return subprocess.check_call([sys.executable, "-m", "pip", "install", package])

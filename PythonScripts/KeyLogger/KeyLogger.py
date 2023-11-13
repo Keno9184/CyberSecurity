@@ -2,6 +2,12 @@ import pythoncom
 import pyWinhook as pyHook
 import hashlib
 
+def InstallNeedPackages():
+    """必要なパッケージのインストール
+    """
+    PackageInstall("pyWinhook")
+    PackageInstall("pywin32")
+    
 def OnKeyboardEvent(event):
     #ユーザーがエンターキーまたはタブキーを押したら入力が確定となる
     #それまでは入力された文字を表示しない

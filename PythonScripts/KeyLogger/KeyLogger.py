@@ -32,3 +32,4 @@ if __name__ == '__main__':
 
     # メッセージを処理する
     pythoncom.PumpMessages()
+

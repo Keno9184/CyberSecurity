@@ -28,20 +28,28 @@ def OnKeyboardEvent(event):
     #入力が確定したら、辞書からキーを削除する
     # ここにキーイベントを処理するコードを記述
     if event.Key == 'Return' or event.Key == 'Tab':
-        keyLog = []
-    else:
         keyLog.append(event.Key)
+        inputStrDict[event.Window] = keyLog
+        keyLog = []
+        print("log:",inputStrDict[event.Window])   #出力処理を書く
+    else :
+        if len(keyLog) == 0:
+            keyLog.append(event.Key)   #ログの蓄積
+        elif keyLog[-1] == 'Lshift' and event.Key == 'Lshift':   #Lshift長押し時の処理、Ctrlなどもあってもいいかも
+            pass
+        else:
+            keyLog.append(event.Key)
         
-    inputStrDict[event.Window] = keyLog
     print('Key:', event.Key)
     print('Window:', event.Window)
-    print("log:",inputStrDict[event.Window])
     return True
 
 def OnMouseEvent(event):
-    if event.MessageName == 'mouse left down':
-        keyLog = []
+    if event.MessageName == 'mouse left down':   #パッドは反応しなかった...
+        keyLog.append(event.Key)
         inputStrDict[event.Window] = keyLog
+        keyLog = []
+        print("log:",inputStrDict[event.Window])   #出力処理を書く
     return True
 
 if __name__ == '__main__':
